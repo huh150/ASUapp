@@ -14,11 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.asuapp001.databinding.FragmentSlideshowBinding
 //well
 class diaryPrilagushaFragment : Fragment() {
-    //
-    //
-    // НИКОЛАЙ ВСЁ ЧТО Я ПОМЕТИЛ РУССКИМИ КОМЕНТАРИЯМИ ЭТО Я НАПИСАЛ А ЧТО НЕ ПОМЕТИЛ ЗДЕСЬ И ТАК БЫЛО ПО ШАБЛОНУ НЕ ТРОГАЙ ОПАСНО!!!
-    // всё названия id в fragment_slideshow.xml
-    //
+
     private var _binding: FragmentSlideshowBinding? = null
     // This property is only valid between onCreateView and
     // onDestroyView.
