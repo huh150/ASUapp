@@ -12,7 +12,7 @@ import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.asuapp001.databinding.FragmentSlideshowBinding
-//well
+
 class diaryPrilagushaFragment : Fragment() {
 
     private var _binding: FragmentSlideshowBinding? = null
@@ -20,7 +20,7 @@ class diaryPrilagushaFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    lateinit var EditTextM : EditText // переменная для измнения этой как его назвать записки
+    lateinit var EditTextM : EditText
     lateinit var EditTextT : EditText
     lateinit var EditTextW : EditText
     lateinit var EditTextTh : EditText
@@ -28,7 +28,7 @@ class diaryPrilagushaFragment : Fragment() {
     lateinit var EditTextS : EditText
 
 
-    lateinit var Pref : SharedPreferences // эта переменная для создания таблицы где будет хранится текст
+    lateinit var Pref : SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,15 +36,15 @@ class diaryPrilagushaFragment : Fragment() {
         savedInstanceState: Bundle? ): View
     {
         val diaryPrilagushaViewModel = ViewModelProvider(this).get(diaryPrilagushaViewModel::class.java)
-        Pref = requireActivity()!!.applicationContext.getSharedPreferences("Table",   Context.MODE_PRIVATE) // здесь присваевается сама табла ну
-                                                                                                                  // первое значение это имя а
-                                                                                                                  // второе я хз что это ну это и не важно потому что создовать присваеть снова ничего не надо
+        Pref = requireActivity()!!.applicationContext.getSharedPreferences("Table",   Context.MODE_PRIVATE)
+
+
         _binding = FragmentSlideshowBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        EditTextM = binding.editTextMonday // тут для можно сказать пример как присвоеить idшник
-        EditTextM.setText("0") // это тип я хотел иницилизацию типа сделать
-        EditTextM.setText(Pref?.getString("EditTextM", "Напишите что нибудь!!!Пожалуйста")!!.toString()) // здесь впихиватся значения из нашей таблицы в которой мы сохроняем вонючий текст первое значение в методе это ключ потом поймешь зачем а второе это значение по умолчанию
+        EditTextM = binding.editTextMonday
+        EditTextM.setText("0")
+        EditTextM.setText(Pref?.getString("EditTextM", "Напишите что нибудь!!!Пожалуйста")!!.toString())
 
         EditTextT = binding.editTextTuesday
         EditTextT.setText("0")
@@ -194,11 +194,11 @@ class diaryPrilagushaFragment : Fragment() {
     }
 
 
-    fun Savedata(data : String, key : String) // ну по названию и так понятно
+    fun Savedata(data : String, key : String)
     {
-       val editor = Pref?.edit() // это едитор ну понятно
-        editor?.putString(key, data) // первое значение в методе это ключ а второе значение в методе это значение которое мы сохроняем
-        editor?.apply() // ну я как понял это сохронить
+       val editor = Pref?.edit()
+        editor?.putString(key, data)
+        editor?.apply()
     }
 
 
