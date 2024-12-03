@@ -48,7 +48,7 @@ class diaryPrilagushaFragment : Fragment() {
 
         EditTextM = binding.editTextMonday // тут для можно сказать пример как присвоеить idшник
         EditTextM.setText("0") // это тип я хотел иницилизацию типа сделать
-        EditTextM.setText(Pref?.getString("EditTextM", "Напишите что нибудь!!!")!!.toString()) // здесь впихиватся значения из нашей таблицы в которой мы сохроняем вонючий текст первое значение в методе это ключ потом поймешь зачем а второе это значение по умолчанию
+        EditTextM.setText(Pref?.getString("EditTextM", "Напишите что нибудь!!!Пожалуйста")!!.toString()) // здесь впихиватся значения из нашей таблицы в которой мы сохроняем вонючий текст первое значение в методе это ключ потом поймешь зачем а второе это значение по умолчанию
 
         EditTextT = binding.editTextTuesday
         EditTextT.setText("0")
