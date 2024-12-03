@@ -3,4 +3,4 @@
 /app/.gradle/
 /app/build/
 /app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/
-local.properties
+/local.properties
