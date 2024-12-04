@@ -17,6 +17,8 @@ import com.example.asuapp001.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+    // Привеееет
+
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
     var pref : SharedPreferences? = null
