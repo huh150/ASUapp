@@ -28,4 +28,10 @@
         android:name="com.example.asuapp001.fragment_creators"
         android:label="@string/menu_dailyPlanner"
         tools:layout="@layout/fragment_fragment_creators" />
+
+    <fragment
+        android:id="@+id/menu_advertisements"
+        android:name="com.example.asuapp001.ui.advertisements.advertisementskFragment"
+        android:label="@string/menu_advertisements"
+        tools:layout="@layout/fragment_advertisementsk" />
 </navigation>
