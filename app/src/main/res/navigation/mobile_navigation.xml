@@ -22,4 +22,10 @@
         android:name="com.example.asuapp001.ui.diaryPrilagusha.diaryPrilagushaFragment"
         android:label="@string/menu_dailyPlanner"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/menu_creators"
+        android:name="com.example.asuapp001.fragment_creators"
+        android:label="@string/menu_dailyPlanner"
+        tools:layout="@layout/fragment_fragment_creators" />
 </navigation>

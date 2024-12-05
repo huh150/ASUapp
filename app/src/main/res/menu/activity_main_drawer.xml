@@ -16,6 +16,10 @@
             android:id="@+id/menu_dailyPlanner"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_dailyPlanner" />
+        <item
+            android:id="@+id/menu_creators"
+            android:icon="@drawable/baseline_assist_walker_24"
+            android:title="Создатели" />
 
     </group>
 </menu>
