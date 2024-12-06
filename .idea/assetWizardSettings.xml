@@ -320,7 +320,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/book/baseline_book_24.xml" />
+                                      <entry key="url" value="jar:file:/F:/Android/plugins/android/lib/android.jar!/images/material/icons/materialicons/assignment_late/baseline_assignment_late_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -330,7 +330,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_menu_slideshow" />
+                            <entry key="outputName" value="baseline_assignment_late_24" />
                             <entry key="sourceFile" value="D:\ASUapp001" />
                           </map>
                         </option>
