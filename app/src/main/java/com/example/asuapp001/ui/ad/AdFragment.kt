@@ -50,7 +50,6 @@ class AdFragment : Fragment() {
         val database = Firebase.database
         val myRef = database.getReference("message")
 
-        myRef.setValue("Hello, World!")
 
         TextFromDb = binding.TextFromDB
 
