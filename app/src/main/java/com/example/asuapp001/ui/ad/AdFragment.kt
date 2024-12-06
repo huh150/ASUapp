@@ -1,6 +1,8 @@
 package com.example.asuapp001.ui.ad
 
 import android.content.ContentValues.TAG
+import android.content.Context
+import android.content.SharedPreferences
 import android.icu.text.CaseMap.Title
 import androidx.fragment.app.viewModels
 import android.os.Bundle
@@ -29,6 +31,8 @@ class AdFragment : Fragment() {
 
     lateinit var TextFromDb : TextView
 
+    lateinit var Pref : SharedPreferences
+
     companion object {
         fun newInstance() = AdFragment()
     }
@@ -47,11 +51,14 @@ class AdFragment : Fragment() {
         _binding = FragmentAdBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        Pref = requireActivity()!!.applicationContext.getSharedPreferences("TableTextBd",   Context.MODE_PRIVATE)
+
         val database = Firebase.database
         val myRef = database.getReference("message")
 
 
         TextFromDb = binding.TextFromDB
+        TextFromDb.setText(Pref.getString("TextFromDb","Пусто"))
 
 
         myRef.addValueEventListener(object: ValueEventListener {
@@ -63,6 +70,7 @@ class AdFragment : Fragment() {
                 if (value != null)
                 {
                     TextFromDb.setText(value)
+                    Savedata(value, "TextFromDb")
                 }
             }
 
@@ -78,5 +86,12 @@ class AdFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun Savedata(data : String, key : String)
+    {
+        val editor = Pref?.edit()
+        editor?.putString(key, data)
+        editor?.apply()
     }
 }
