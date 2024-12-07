@@ -17,14 +17,13 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_dailyPlanner" />
         <item
-            android:id="@+id/menu_creators"
-            android:icon="@drawable/baseline_assist_walker_24"
-            android:title="@string/menu_creators" />
-
-        <item
             android:id="@+id/menu_ad"
             android:icon="@drawable/baseline_assignment_late_24"
             android:title="@string/menu_ad" />
+        <item
+            android:id="@+id/menu_creators"
+            android:icon="@drawable/baseline_assist_walker_24"
+            android:title="@string/menu_creators" />
 
     </group>
 </menu>
