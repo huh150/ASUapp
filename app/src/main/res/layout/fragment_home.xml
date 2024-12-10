@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
         android:fontFamily="@font/fonts"
-        android:text="Сделано студентам 205c9 и 305c11"
+        android:text="Сделано студентам групп 205c9 и 305c11"
         android:gravity="center"
         android:textColor="#1a4d99"
         android:textSize="11dp"
