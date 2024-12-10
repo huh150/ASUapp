@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent" />
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="290dp"
+        android:layout_width="wrap_content"
         android:layout_height="35dp"
         android:layout_marginStart="25dp"
         android:fontFamily="@font/fonts"
@@ -205,8 +205,8 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="370dp"
+        android:layout_height="740dp"
         android:src="@drawable/garlands"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

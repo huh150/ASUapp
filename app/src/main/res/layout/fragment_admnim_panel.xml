@@ -5,20 +5,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:visibility="visible"
+    android:background="@drawable/fon"
     tools:context=".ui.AdminPanel.AdmnimPanel">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="290dp"
+        android:layout_height="184dp"
+        android:layout_marginStart="-35dp"
+        android:layout_marginTop="-30dp"
+        android:src="@drawable/logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="15dp"
+        android:fontFamily="@font/fonts"
+        android:gravity="right"
+        android:text="Панель Администратора"
+        android:textColor="#1a4d99"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.985"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.084" />
 
     <TextView
         android:id="@+id/AuthTextBD"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="Введите пароль и почту"
-        android:textSize="28dp"
-        android:visibility="visible"
+        android:layout_height="35dp"
+        android:fontFamily="@font/fonts"
+        android:textColor="#1a4d99"
+        android:textSize="30dp"
+        android:text="Введите email и пароль"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintVertical_bias="0.172" />
 
     <Button
         android:id="@+id/LoginButtonBD"
@@ -27,6 +59,8 @@
         android:layout_marginBottom="112dp"
         android:text="Войти"
         android:visibility="visible"
+        android:background="@drawable/shape"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -43,6 +77,8 @@
         android:hint="Введите пароль"
         android:inputType="textPassword"
         android:visibility="visible"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/LoginButtonBD"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -59,7 +95,8 @@
         android:layout_marginBottom="10dp"
         android:ems="10"
         android:hint="Введите email"
-
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
         android:inputType="textEmailAddress"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/LoginPassword"
@@ -74,43 +111,60 @@
         android:id="@+id/adChange"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/fonts"
         android:text="Изменения в объявления"
-        android:textSize="22dp"
+        android:textColor="#1a4d99"
+        android:textSize="25dp"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/adTextChange"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.136"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.754"
-        tools:visibility="gone" />
+        tools:visibility="gone"/>
 
     <EditText
         android:id="@+id/adTextChange"
-        android:layout_width="371dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="88dp"
+        android:layout_width="370dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/shape"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="10dp"
         android:visibility="gone"
+        android:paddingRight="10dp"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/AuthTextBD"
-        tools:visibility="gone" />
+        tools:visibility="gone"/>
 
     <Button
         android:id="@+id/adBtnChange"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/shape"
         android:text="Изменить"
+        android:textColor="@color/black"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/LoginButtonBD"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/adTextChange"
-        app:layout_constraintVertical_bias="0.89"
         tools:visibility="gone" />
 
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="370dp"
+        android:layout_height="740dp"
+        android:src="@drawable/garlands"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
