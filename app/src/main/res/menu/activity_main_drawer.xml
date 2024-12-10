@@ -25,5 +25,11 @@
             android:icon="@drawable/baseline_assist_walker_24"
             android:title="@string/menu_creators" />
 
+        <item
+            android:id="@+id/menu_admin"
+            android:icon="@drawable/baseline_admin_panel_settings_24"
+            android:title="@string/menu_admin" />
+
+
     </group>
 </menu>

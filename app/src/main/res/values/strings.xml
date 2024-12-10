@@ -12,4 +12,5 @@
     <string name="menu_dailyPlanner">Ежедневник</string>
     <string name="menu_creators">О разработчиках</string>
     <string name="menu_ad">Объявления</string>
+    <string name="menu_admin">Панел Администратора</string>
 </resources>

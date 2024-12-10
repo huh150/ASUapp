@@ -35,5 +35,11 @@
         android:label="@string/menu_ad"
         tools:layout="@layout/fragment_ad" />
 
+    <fragment
+        android:id="@+id/menu_admin"
+        android:name="com.example.asuapp001.ui.AdminPanel.AdmnimPanel"
+        android:label="@string/menu_admin"
+        tools:layout="@layout/fragment_admnim_panel" />
+
 
 </navigation>
