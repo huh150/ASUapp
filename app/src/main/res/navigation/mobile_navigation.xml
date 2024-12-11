@@ -41,5 +41,9 @@
         android:label="@string/menu_admin"
         tools:layout="@layout/fragment_admnim_panel" />
 
-
+    <fragment
+        android:id="@+id/menu_bopros"
+        android:name="com.example.asuapp001.ui.fragment_bopros"
+        android:label="@string/menu_bopros"
+        tools:layout="@layout/fragment_bopros" />
 </navigation>

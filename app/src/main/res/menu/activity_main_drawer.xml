@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
@@ -21,10 +22,16 @@
             android:icon="@drawable/baseline_assignment_late_24"
             android:title="@string/menu_ad" />
         <item
+            android:id="@+id/menu_bopros"
+            android:icon="@drawable/baseline_search_24"
+            android:title="@string/menu_bopros" />
+
+
+
+        <item
             android:id="@+id/menu_creators"
             android:icon="@drawable/baseline_assist_walker_24"
             android:title="@string/menu_creators" />
-
         <item
             android:id="@+id/menu_admin"
             android:icon="@drawable/baseline_admin_panel_settings_24"
