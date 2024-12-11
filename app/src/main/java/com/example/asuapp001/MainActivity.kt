@@ -20,6 +20,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.core.view.MenuItemCompat
 import com.example.asuapp001.databinding.ActivityMainBinding
 import com.example.asuapp001.ui.ad.AdFragment
@@ -72,11 +73,11 @@ class MainActivity : AppCompatActivity() {
        MytextBar = MenuItemCompat.getActionView(navView.menu.findItem(R.id.menu_ad)) as TextView
        MytextBar.setGravity(Gravity.CENTER_VERTICAL);
 
-
         val menuItem: MenuItem = navView.getMenu().findItem(R.id.menu_ad)
         menuItem.setOnMenuItemClickListener { menuItem ->
             MytextBar.text = " "
             navController.navigate(R.id.menu_ad);
+            drawerLayout.closeDrawer(GravityCompat.START)
             true
         }
 
