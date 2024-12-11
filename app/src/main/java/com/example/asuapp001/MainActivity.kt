@@ -22,6 +22,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuItemCompat
 import com.example.asuapp001.databinding.ActivityMainBinding
+import com.example.asuapp001.ui.ad.AdFragment
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -39,7 +40,6 @@ class MainActivity : AppCompatActivity() {
     val myRef = database.getReference("message")
     lateinit var MainValueDB : String
     public final var aSS : String = "dssdsdad"
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,6 +71,14 @@ class MainActivity : AppCompatActivity() {
 
        MytextBar = MenuItemCompat.getActionView(navView.menu.findItem(R.id.menu_ad)) as TextView
        MytextBar.setGravity(Gravity.CENTER_VERTICAL);
+
+
+        val menuItem: MenuItem = navView.getMenu().findItem(R.id.menu_ad)
+        menuItem.setOnMenuItemClickListener { menuItem ->
+            MytextBar.text = " "
+            navController.navigate(R.id.menu_ad);
+            true
+        }
 
 
         myRef.addValueEventListener(object : ValueEventListener {

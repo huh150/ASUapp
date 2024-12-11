@@ -7,16 +7,23 @@ import android.icu.text.CaseMap.Title
 import androidx.fragment.app.viewModels
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.view.MenuItemCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import com.example.asuapp001.R
+import com.example.asuapp001.databinding.ActivityMainBinding
 import com.example.asuapp001.databinding.FragmentAdBinding
 import com.example.asuapp001.databinding.FragmentHomeBinding
 import com.example.asuapp001.ui.home.HomeViewModel
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -39,7 +46,6 @@ class AdFragment : Fragment() {
 
     private val viewModel: AdViewModel by viewModels()
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -56,10 +62,8 @@ class AdFragment : Fragment() {
         val database = Firebase.database
         val myRef = database.getReference("message")
 
-
         TextFromDb = binding.TextFromDB
         TextFromDb.setText(Pref.getString("TextFromDb","Пусто"))
-
 
         myRef.addValueEventListener(object: ValueEventListener {
 
