@@ -29,7 +29,7 @@ class AdmnimPanel : Fragment() {
     private var _binding: FragmentAdmnimPanelBinding? = null
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
-    private lateinit var database :FirebaseDatabase
+    private lateinit var database : FirebaseDatabase
 
     lateinit var authTextBD : TextView
     lateinit var LoginBtnBD : Button
@@ -37,7 +37,9 @@ class AdmnimPanel : Fragment() {
     lateinit var LoginEmailDB : EditText
     lateinit var adChange : TextView
     lateinit var adTextChange : EditText
+    lateinit var adUrlImageChange : TextView
     lateinit var adBtnChange : Button
+    lateinit var adURLChange : TextView
 
     companion object {
         fun newInstance() = AdmnimPanel()
@@ -60,6 +62,7 @@ class AdmnimPanel : Fragment() {
         auth = Firebase.auth
         database = Firebase.database
         val myRef = database.getReference("message")
+        val myRefImg = database.getReference("ImageUrl")
 
         authTextBD = binding.AuthTextBD
         LoginBtnBD = binding.LoginButtonBD
@@ -68,6 +71,8 @@ class AdmnimPanel : Fragment() {
         adChange = binding.adChange
         adTextChange = binding.adTextChange
         adBtnChange = binding.adBtnChange
+        adUrlImageChange = binding.adURLImageChange
+        adURLChange = binding.adUrlChange
 
 
         LoginBtnBD.setOnClickListener {
@@ -123,6 +128,7 @@ class AdmnimPanel : Fragment() {
 
         adBtnChange.setOnClickListener {
             myRef.setValue(adTextChange.text.toString())
+            myRefImg.setValue(adUrlImageChange.text.toString())
         }
 
 
@@ -169,6 +175,8 @@ class AdmnimPanel : Fragment() {
         adChange.visibility = View.VISIBLE
         adTextChange.visibility = View.VISIBLE
         adBtnChange.visibility = View.VISIBLE
+        adUrlImageChange.visibility = View.VISIBLE
+        adURLChange.visibility = View.VISIBLE
 
     }
 

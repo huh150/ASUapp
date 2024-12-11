@@ -12,12 +12,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.MenuItemCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import com.bumptech.glide.Glide
 import com.example.asuapp001.R
 import com.example.asuapp001.databinding.ActivityMainBinding
 import com.example.asuapp001.databinding.FragmentAdBinding
@@ -37,6 +39,8 @@ class AdFragment : Fragment() {
     private val binding get() = _binding!!
 
     lateinit var TextFromDb : TextView
+    lateinit var ImageViewFromBd : ImageView
+    var ImgURL : String = "https://media.discordapp.net/attachments/802830768609951805/1316249625086136393/image.png?ex=675b053d&is=6759b3bd&hm=50d8bbdcb5693a38215af71efb698c3ebb124d4404cc291b3f8767fb50e7c340&=&format=webp&quality=lossless&width=635&height=468"
 
     lateinit var Pref : SharedPreferences
 
@@ -61,9 +65,20 @@ class AdFragment : Fragment() {
 
         val database = Firebase.database
         val myRef = database.getReference("message")
+        val myRefImg = database.getReference("ImageUrl")
 
         TextFromDb = binding.TextFromDB
+        ImageViewFromBd = binding.imageFromBD
         TextFromDb.setText(Pref.getString("TextFromDb","Пусто"))
+
+        val ActContext = context
+        if (ActContext != null) {
+            Glide.with(ActContext)
+                .load(ImgURL)
+                .centerCrop()
+                .placeholder(R.drawable.ic_launcher_background)
+                .into(ImageViewFromBd)
+        }
 
         myRef.addValueEventListener(object: ValueEventListener {
 
@@ -82,6 +97,30 @@ class AdFragment : Fragment() {
                 Log.w(TAG, "Failed to read value.", error.toException())
             }
 
+        })
+
+        myRefImg.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot)
+            {
+                val value = snapshot.getValue<String>()
+                if (value != null)
+                {
+                    ImgURL = value
+                    val ActContext = context
+                    if (ActContext != null)
+                    {
+                         Glide.with(ActContext)
+                            .load(ImgURL)
+                            .centerCrop()
+                            .placeholder(R.drawable.ic_launcher_background)
+                            .into(ImageViewFromBd)
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.w(TAG, "Failed to read value.", error.toException())
+            }
         })
 
         return root

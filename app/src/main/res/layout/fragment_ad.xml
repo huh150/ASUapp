@@ -34,8 +34,8 @@
 
     <TextView
         android:id="@+id/TextFromDB"
-        android:layout_width="287dp"
-        android:layout_height="486dp"
+        android:layout_width="278dp"
+        android:layout_height="209dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/shape"
         android:fontFamily="@font/fonts"
@@ -81,5 +81,16 @@
         android:src="@drawable/garlands"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageFromBD"
+        android:layout_width="277dp"
+        android:layout_height="216dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TextFromDB"
+        app:layout_constraintVertical_bias="0.214"
+        tools:src="@tools:sample/avatars" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
