@@ -1,10 +1,17 @@
 package com.example.asuapp001
 
+import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.SharedPreferences
+import android.graphics.Typeface
 import android.os.Bundle
+import android.util.Log
+import android.view.Gravity
 import android.view.Menu
-import android.widget.EditText
-import com.google.android.material.snackbar.Snackbar
+import android.view.MenuItem
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -13,18 +20,34 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.MenuItemCompat
 import com.example.asuapp001.databinding.ActivityMainBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
-    var pref : SharedPreferences? = null
+    lateinit var MytextBar : TextView
+    lateinit var pref : SharedPreferences
+    val database = Firebase.database
+    val myRef = database.getReference("message")
+    lateinit var MainValueDB : String
+    public final var aSS : String = "dssdsdad"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        pref = getSharedPreferences("MainActTable" , Context.MODE_PRIVATE)
+        MainValueDB = pref.getString("dataMainValue", "ds")!!
 
         setSupportActionBar(binding.appBarMain.toolbar)
 
@@ -45,6 +68,42 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+       MytextBar = MenuItemCompat.getActionView(navView.menu.findItem(R.id.menu_ad)) as TextView
+       MytextBar.setGravity(Gravity.CENTER_VERTICAL);
+
+
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val value = snapshot.getValue<String>()
+                if (value != null)
+                {
+                    if (MainValueDB != value)
+                    {
+                        MainValueDB = value
+                        Savedata(value,"dataMainValue")
+                        Toast.makeText(baseContext, "Новое сообщение", Toast.LENGTH_SHORT).show()
+                        MytextBar.text = "$aSS"
+                    }
+                    else
+                    {
+                        Toast.makeText(baseContext, "Тоже самое", Toast.LENGTH_SHORT).show()
+                        MytextBar.text = " "
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.w(TAG, "Failed to read value.", error.toException())
+            }
+        })
+    }
+
+    fun Savedata(data : String, key : String)
+    {
+        val editor = pref?.edit()
+        editor?.putString(key, data)
+        editor?.apply()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -53,6 +112,7 @@ class MainActivity : AppCompatActivity() {
 
         return true
     }
+
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
