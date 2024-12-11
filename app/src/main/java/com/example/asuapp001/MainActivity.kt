@@ -93,7 +93,6 @@ class MainActivity : AppCompatActivity() {
                     {
                         MainValueDB = value
                         Savedata(value,"dataMainValue")
-                        Toast.makeText(baseContext, "Новое сообщение", Toast.LENGTH_SHORT).show()
                         MytextBar.text = "⁉️"
                     }
                     else
