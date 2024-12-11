@@ -81,6 +81,12 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+        val menuItem2: MenuItem = navView.getMenu().findItem(R.id.nav_home)
+        menuItem2.setOnMenuItemClickListener { menuItem2 ->
+            navController.navigate(R.id.nav_home);
+            drawerLayout.closeDrawer(GravityCompat.START)
+            true
+        }
 
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
