@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         pref = getSharedPreferences("MainActTable" , Context.MODE_PRIVATE)
         MainValueDB = pref.getString("dataMainValue", "ds")!!
 
-        setSupportActionBar(binding.appBarMain.toolbar)
+            setSupportActionBar(binding.appBarMain.toolbar)
 
 //        binding.appBarMain.fab.setOnClickListener { view ->
 //            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -66,12 +66,14 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+
        MytextBar = MenuItemCompat.getActionView(navView.menu.findItem(R.id.menu_ad)) as TextView
        MytextBar.setGravity(Gravity.CENTER_VERTICAL);
+       MytextBar.text = pref.getString("dataMainValueTTT","")!!
 
         val menuItem: MenuItem = navView.getMenu().findItem(R.id.menu_ad)
         menuItem.setOnMenuItemClickListener { menuItem ->
-            MytextBar.text = " "
+            MytextBar.text = ""
             navController.navigate(R.id.menu_ad);
             drawerLayout.closeDrawer(GravityCompat.START)
             true
@@ -94,10 +96,7 @@ class MainActivity : AppCompatActivity() {
                         MainValueDB = value
                         Savedata(value,"dataMainValue")
                         MytextBar.text = "⁉️"
-                    }
-                    else
-                    {
-                        MytextBar.text = ""
+                        Savedata(MytextBar.text.toString(),"dataMainValueTTT")
                     }
                 }
             }
