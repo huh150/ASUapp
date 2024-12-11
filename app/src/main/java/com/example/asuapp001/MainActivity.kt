@@ -3,13 +3,11 @@ package com.example.asuapp001
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.SharedPreferences
-import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.navigation.NavigationView
@@ -23,7 +21,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.core.view.MenuItemCompat
 import com.example.asuapp001.databinding.ActivityMainBinding
-import com.example.asuapp001.ui.ad.AdFragment
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -40,7 +37,6 @@ class MainActivity : AppCompatActivity() {
     val database = Firebase.database
     val myRef = database.getReference("message")
     lateinit var MainValueDB : String
-    public final var aSS : String = "dssdsdad"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -98,12 +94,11 @@ class MainActivity : AppCompatActivity() {
                         MainValueDB = value
                         Savedata(value,"dataMainValue")
                         Toast.makeText(baseContext, "Новое сообщение", Toast.LENGTH_SHORT).show()
-                        MytextBar.text = "$aSS"
+                        MytextBar.text = "⁉️"
                     }
                     else
                     {
-                        Toast.makeText(baseContext, "Тоже самое", Toast.LENGTH_SHORT).show()
-                        MytextBar.text = " "
+                        MytextBar.text = ""
                     }
                 }
             }
