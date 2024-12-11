@@ -74,6 +74,7 @@ class MainActivity : AppCompatActivity() {
         val menuItem: MenuItem = navView.getMenu().findItem(R.id.menu_ad)
         menuItem.setOnMenuItemClickListener { menuItem ->
             MytextBar.text = ""
+            Savedata(MytextBar.text.toString(),"dataMainValueTTT")
             navController.navigate(R.id.menu_ad);
             drawerLayout.closeDrawer(GravityCompat.START)
             true
