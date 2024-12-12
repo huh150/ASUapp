@@ -27,16 +27,19 @@
             android:icon="@drawable/baseline_search_24"
             android:title="@string/menu_bopros" />
 
-
-        <item
-            android:id="@+id/menu_creators"
-            android:icon="@drawable/baseline_assist_walker_24"
-            android:title="@string/menu_creators" />
-        <item
-            android:id="@+id/menu_admin"
-            android:icon="@drawable/baseline_admin_panel_settings_24"
-            android:title="@string/menu_admin" />
-
+        <item android:title="">
+            <menu>
+                <item
+                    android:id="@+id/menu_creators"
+                    android:icon="@drawable/baseline_assist_walker_24"
+                    android:title="@string/menu_creators" />
+                <item
+                    android:id="@+id/menu_admin"
+                    android:icon="@drawable/baseline_admin_panel_settings_24"
+                    android:title="@string/menu_admin"
+                    android:gravity="end"/>
+            </menu>
+        </item>
 
     </group>
 </menu>
