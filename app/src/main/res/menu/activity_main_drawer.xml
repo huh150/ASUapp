@@ -22,24 +22,18 @@
             android:icon="@drawable/baseline_assignment_late_24"
             app:actionViewClass="android.widget.TextView"
             android:title="@string/menu_ad" />
-
-
-        <item android:title="">
-            <menu>
-                <item
-                    android:id="@+id/menu_admin"
-                    android:icon="@drawable/baseline_admin_panel_settings_24"
-                    android:title="@string/menu_admin" />
-                <item
-                android:id="@+id/menu_bopros"
-                android:icon="@drawable/baseline_search_24"
-                android:title="@string/menu_bopros" />
-                <item
-                android:id="@+id/menu_creators"
-                android:icon="@drawable/baseline_assist_walker_24"
-                android:title="@string/menu_creators" />
-            </menu>
-        </item>
+        <item
+            android:id="@+id/menu_admin"
+            android:icon="@drawable/baseline_admin_panel_settings_24"
+            android:title="@string/menu_admin" />
+        <item
+            android:id="@+id/menu_bopros"
+            android:icon="@drawable/baseline_search_24"
+            android:title="@string/menu_bopros" />
+        <item
+            android:id="@+id/menu_creators"
+            android:icon="@drawable/baseline_assist_walker_24"
+            android:title="@string/menu_creators" />
 
     </group>
 </menu>
