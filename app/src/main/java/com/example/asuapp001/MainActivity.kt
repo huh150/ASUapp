@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.core.view.MenuItemCompat
 import com.example.asuapp001.databinding.ActivityMainBinding
+import com.example.asuapp001.ui.ad.AdFragment
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -71,20 +72,14 @@ class MainActivity : AppCompatActivity() {
        MytextBar.setGravity(Gravity.CENTER_VERTICAL);
        MytextBar.text = pref.getString("dataMainValueTTT","")!!
 
-        val menuItem: MenuItem = navView.getMenu().findItem(R.id.menu_ad)
-        menuItem.setOnMenuItemClickListener { menuItem ->
+        val menuItem: MenuItem = navView.menu.findItem(R.id.menu_ad)
+        menuItem.setOnMenuItemClickListener{menuItem ->
             MytextBar.text = ""
-            Savedata(MytextBar.text.toString(),"dataMainValueTTT")
-            navController.navigate(R.id.menu_ad);
+            Savedata(MytextBar.text.toString(), "dataMainValueTTT")
+            supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment_content_main, AdFragment.newInstance()).commit()
             drawerLayout.closeDrawer(GravityCompat.START)
             true
-        }
 
-        val menuItem2: MenuItem = navView.getMenu().findItem(R.id.nav_home)
-        menuItem2.setOnMenuItemClickListener { menuItem2 ->
-            navController.navigate(R.id.nav_home);
-            drawerLayout.closeDrawer(GravityCompat.START)
-            true
         }
 
         myRef.addValueEventListener(object : ValueEventListener {
