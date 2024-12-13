@@ -20,6 +20,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.core.view.MenuItemCompat
+import androidx.navigation.NavOptions
 import com.example.asuapp001.databinding.ActivityMainBinding
 import com.example.asuapp001.ui.ad.AdFragment
 import com.google.firebase.database.DataSnapshot
@@ -72,14 +73,18 @@ class MainActivity : AppCompatActivity() {
        MytextBar.setGravity(Gravity.CENTER_VERTICAL);
        MytextBar.text = pref.getString("dataMainValueTTT","")!!
 
+        val navOptions = NavOptions.Builder()
+            .setLaunchSingleTop(false)
+            .build()
+
         val menuItem: MenuItem = navView.menu.findItem(R.id.menu_ad)
         menuItem.setOnMenuItemClickListener{menuItem ->
             MytextBar.text = ""
             Savedata(MytextBar.text.toString(), "dataMainValueTTT")
-            supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment_content_main, AdFragment.newInstance()).commit()
+            navController.popBackStack()
+            navController.navigate(R.id.menu_ad, null, navOptions)
             drawerLayout.closeDrawer(GravityCompat.START)
             true
-
         }
 
         myRef.addValueEventListener(object : ValueEventListener {
@@ -113,7 +118,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
-
         return true
     }
 
