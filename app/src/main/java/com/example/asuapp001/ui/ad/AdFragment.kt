@@ -40,7 +40,7 @@ class AdFragment : Fragment() {
 
     lateinit var TextFromDb : TextView
     lateinit var ImageViewFromBd : ImageView
-    var ImgURL : String = "https://media.discordapp.net/attachments/802830768609951805/1316249625086136393/image.png?ex=675b053d&is=6759b3bd&hm=50d8bbdcb5693a38215af71efb698c3ebb124d4404cc291b3f8767fb50e7c340&=&format=webp&quality=lossless&width=635&height=468"
+    var ImgURL : String  = ""
 
     lateinit var Pref : SharedPreferences
 
@@ -66,19 +66,12 @@ class AdFragment : Fragment() {
         val database = Firebase.database
         val myRef = database.getReference("message")
         val myRefImg = database.getReference("ImageUrl")
+        val myRefBool = database.getReference("VisibleImage")
+
 
         TextFromDb = binding.TextFromDB
         ImageViewFromBd = binding.imageFromBD
-        TextFromDb.setText(Pref.getString("TextFromDb","Пусто"))
-
-        val ActContext = context
-        if (ActContext != null) {
-            Glide.with(ActContext)
-                .load(ImgURL)
-                .centerCrop()
-                .placeholder(R.drawable.ic_launcher_background)
-                .into(ImageViewFromBd)
-        }
+        TextFromDb.text = Pref.getString("TextFromDb","Пусто")
 
         myRef.addValueEventListener(object: ValueEventListener {
 
@@ -88,7 +81,7 @@ class AdFragment : Fragment() {
                 val value = snapshot.getValue<String>()
                 if (value != null)
                 {
-                    TextFromDb.setText(value)
+                    TextFromDb.text = value
                     Savedata(value, "TextFromDb")
                 }
             }
@@ -99,6 +92,16 @@ class AdFragment : Fragment() {
 
         })
 
+        val ActContext = context
+        if (ActContext != null)
+        {
+            Glide.with(ActContext)
+                .load(ImgURL)
+                .centerCrop()
+                .placeholder(R.drawable.ic_launcher_background)
+                .into(ImageViewFromBd)
+        }
+
         myRefImg.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot)
             {
@@ -106,21 +109,43 @@ class AdFragment : Fragment() {
                 if (value != null)
                 {
                     ImgURL = value
+                    Savedata(value,"ImgURLData")
                     val ActContext = context
                     if (ActContext != null)
                     {
-                         Glide.with(ActContext)
-                            .load(ImgURL)
-                            .centerCrop()
-                            .placeholder(R.drawable.ic_launcher_background)
-                            .into(ImageViewFromBd)
+                        Glide.with(ActContext)
+                        .load(ImgURL)
+                        .centerCrop()
+                        .placeholder(R.drawable.ic_launcher_background)
+                        .into(ImageViewFromBd)
                     }
                 }
             }
 
-            override fun onCancelled(error: DatabaseError) {
+            override fun onCancelled(error: DatabaseError)
+            {
                 Log.w(TAG, "Failed to read value.", error.toException())
             }
+        })
+
+        myRefBool.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val value = snapshot.getValue<Boolean>()
+                if (value == true)
+                {
+                    ImageViewFromBd.visibility = View.VISIBLE
+                }
+                else if (value == false)
+                {
+                    ImageViewFromBd.visibility = View.GONE
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError)
+            {
+                Log.w(TAG, "Failed to read value.", error.toException())
+            }
+
         })
 
         return root

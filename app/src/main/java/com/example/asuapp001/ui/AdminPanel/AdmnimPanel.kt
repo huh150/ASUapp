@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Switch
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -40,10 +41,10 @@ class AdmnimPanel : Fragment() {
     lateinit var adUrlImageChange : TextView
     lateinit var adBtnChange : Button
     lateinit var adURLChange : TextView
+    lateinit var switchImgVisibleDB : Switch
 
     companion object {
         fun newInstance() = AdmnimPanel()
-
     }
 
     private val viewModel: AdmnimPanelViewModel by viewModels()
@@ -63,6 +64,7 @@ class AdmnimPanel : Fragment() {
         database = Firebase.database
         val myRef = database.getReference("message")
         val myRefImg = database.getReference("ImageUrl")
+        val myRefBool = database.getReference("VisibleImage")
 
         authTextBD = binding.AuthTextBD
         LoginBtnBD = binding.LoginButtonBD
@@ -73,6 +75,7 @@ class AdmnimPanel : Fragment() {
         adBtnChange = binding.adBtnChange
         adUrlImageChange = binding.adURLImageChange
         adURLChange = binding.adUrlChange
+        switchImgVisibleDB = binding.switchImgVisibleDB
 
 
         LoginBtnBD.setOnClickListener {
@@ -126,11 +129,27 @@ class AdmnimPanel : Fragment() {
 
         })
 
+
+
         adBtnChange.setOnClickListener {
             myRef.setValue(adTextChange.text.toString())
             myRefImg.setValue(adUrlImageChange.text.toString())
+
         }
 
+
+        switchImgVisibleDB.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked)
+            {
+                myRefBool.setValue(true)
+                Toast.makeText(activity, "Изоброжение есть", Toast.LENGTH_SHORT).show()
+            }
+            else
+            {
+                myRefBool.setValue(false)
+                Toast.makeText(activity, "Изоброжения нет", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         return root
     }
@@ -177,6 +196,7 @@ class AdmnimPanel : Fragment() {
         adBtnChange.visibility = View.VISIBLE
         adUrlImageChange.visibility = View.VISIBLE
         adURLChange.visibility = View.VISIBLE
+        switchImgVisibleDB.visibility = View.VISIBLE
 
     }
 
