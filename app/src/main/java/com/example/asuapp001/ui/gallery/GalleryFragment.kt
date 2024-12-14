@@ -15,6 +15,7 @@ import android.widget.Button
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.asuapp001.R
 import com.example.asuapp001.databinding.FragmentGalleryBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -54,6 +55,16 @@ class GalleryFragment : Fragment() {
         val studentButton: Button = binding.studentButton // кнопка для студента
         val teacherButton: Button = binding.teacherButton // кнопка для преподавателя
 
+        val intent = CustomTabsIntent.Builder()
+            .setShowTitle(true)
+            .setInitialActivityHeightPx(300)
+            .setToolbarCornerRadiusDp(10)
+            .setToolbarColor(requireActivity().getColor(R.color.purple_700))
+            .setUrlBarHidingEnabled(true)
+            .setStartAnimations(requireActivity(), android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+            .setExitAnimations(requireActivity(), android.R.anim.slide_out_right, android.R.anim.slide_in_left)
+            .build()
+
         myRefStudent.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 val value = snapshot.getValue<String>()
@@ -86,15 +97,12 @@ class GalleryFragment : Fragment() {
 
 
         studentButton.setOnClickListener {
-            val intent = CustomTabsIntent.Builder()
-                .build()
+
 
             intent.launchUrl(requireContext(), Uri.parse(studentPdfUrl));
         }
 
         teacherButton.setOnClickListener {
-            val intent = CustomTabsIntent.Builder()
-                .build()
 
             intent.launchUrl(requireContext(), Uri.parse(teacherPdfUrl));
         }
