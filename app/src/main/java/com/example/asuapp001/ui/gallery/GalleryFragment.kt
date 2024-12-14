@@ -6,6 +6,7 @@ import android.content.ActivityNotFoundException
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -42,13 +43,8 @@ fun openPartialCustomTab(context: Context, url: String) {
     // Создание объекта CustomTabsIntent
     val customTabsIntent = builder.build()
 
-    // Проверка наличия Chrome и поддержки Custom Tabs
-    if (packageName != null) {
-        customTabsIntent.intent.setPackage(packageName)
-        customTabsIntent.launchUrl(context, Uri.parse(url))
-    } else {
-        openInBrowserFallback(context, url)
-    }
+    customTabsIntent.launchUrl(context, Uri.parse(url))
+
 }
 
 private fun getChromePackageName(context: Context): String? {
@@ -82,6 +78,7 @@ class GalleryFragment : Fragment() {
     private val myRefPrepod: DatabaseReference = database.getReference("LinkURLPrepod")
     private var studentPdfUrl = "https://drive.google.com/file/d/1vyobnZOsCxCNHi0lFjlEFijYl-EI2DoO/view?usp=sharing"
     private var teacherPdfUrl = "https://disk.yandex.ru/i/..."
+    lateinit var Pref : SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -94,6 +91,10 @@ class GalleryFragment : Fragment() {
         _binding = FragmentGalleryBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        Pref = requireActivity()!!.applicationContext.getSharedPreferences("TableTextBd",   Context.MODE_PRIVATE)
+        studentPdfUrl = Pref.getString("studentPdfUrl", "https://drive.google.com/file/d/")!!
+        teacherPdfUrl = Pref.getString("teacherPdfUrl", "https://drive.google.com/file/d/")!!
+
         val studentButton: Button = binding.studentButton // кнопка для студента
         val teacherButton: Button = binding.teacherButton // кнопка для преподавателя
 
@@ -103,6 +104,7 @@ class GalleryFragment : Fragment() {
                 if (value != null)
                 {
                     studentPdfUrl = value
+                    Savedata(value,"studentPdfUrl")
                 }
             }
 
@@ -117,6 +119,7 @@ class GalleryFragment : Fragment() {
                 if (value != null)
                 {
                     teacherPdfUrl = value
+                    Savedata(value,"teacherPdfUrl")
                 }
             }
 
@@ -137,9 +140,16 @@ class GalleryFragment : Fragment() {
         return root
     }
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
+    fun Savedata(data : String, key : String)
+    {
+        val editor = Pref?.edit()
+        editor?.putString(key, data)
+        editor?.apply()
+    }
+
 }
