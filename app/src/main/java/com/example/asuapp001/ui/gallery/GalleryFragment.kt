@@ -2,10 +2,8 @@
 
 package com.example.asuapp001.ui.gallery
 
-import android.content.ActivityNotFoundException
 import android.content.ContentValues.TAG
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
@@ -15,10 +13,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.browser.customtabs.CustomTabsIntent
-import androidx.browser.customtabs.CustomTabsService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.asuapp001.R
 import com.example.asuapp001.databinding.FragmentGalleryBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -28,46 +24,6 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 
-
-fun openPartialCustomTab(context: Context, url: String) {
-    // Получение пакета Chrome
-    val packageName = getChromePackageName(context)
-
-    // Создание объекта CustomTabsIntent.Builder
-    val builder = CustomTabsIntent.Builder()
-        .setShowTitle(true) // Отображение заголовка страницы
-        .setToolbarColor(context.getColor(R.color.purple_700)) // Цвет панели инструментов
-
-    builder.setInitialActivityHeightPx(500)
-
-    // Создание объекта CustomTabsIntent
-    val customTabsIntent = builder.build()
-
-    customTabsIntent.launchUrl(context, Uri.parse(url))
-
-}
-
-private fun getChromePackageName(context: Context): String? {
-    val packageManager = context.packageManager
-    val customTabsPackages = packageManager.queryIntentServices(
-        Intent(CustomTabsService.ACTION_CUSTOM_TABS_CONNECTION), 0
-    )
-    for (info in customTabsPackages) {
-        if (info.serviceInfo.packageName.equals("com.android.chrome", true)) {
-            return info.serviceInfo.packageName
-        }
-    }
-    return null
-}
-
-private fun openInBrowserFallback(context: Context, url: String) {
-    try {
-        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-        context.startActivity(browserIntent)
-    } catch (e: ActivityNotFoundException) {
-        // Обработка ошибки (например, отображение сообщения пользователю)
-    }
-}
 
 class GalleryFragment : Fragment() {
 
@@ -130,11 +86,17 @@ class GalleryFragment : Fragment() {
 
 
         studentButton.setOnClickListener {
-            openPartialCustomTab(requireContext(), studentPdfUrl)
+            val intent = CustomTabsIntent.Builder()
+                .build()
+
+            intent.launchUrl(requireContext(), Uri.parse(studentPdfUrl));
         }
 
         teacherButton.setOnClickListener {
-            openPartialCustomTab(requireContext(), teacherPdfUrl)
+            val intent = CustomTabsIntent.Builder()
+                .build()
+
+            intent.launchUrl(requireContext(), Uri.parse(teacherPdfUrl));
         }
 
         return root
