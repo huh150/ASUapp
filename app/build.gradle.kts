@@ -54,6 +54,7 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.6.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation ("com.github.bumptech.glide:glide:4.16.0")
+    implementation ("androidx.browser:browser:1.5.0")
     implementation(libs.firebase.database)
     implementation(libs.firebase.auth)
     testImplementation(libs.junit)
