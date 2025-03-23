@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/helpText"
+        app:layout_constraintTop_toTopOf
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="Это раздел помощи. Здесь вы можете найти информацию о том, как использовать приложение / помощь по сайте / помощь по Moodle / помощь по Urait"
+        android:textSize="16sp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="1dp"(parent)
+    app:layout_constraintStart_toStartOf(parent)
+    app:layout_constraintEnd_toEndOf(parent) />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
