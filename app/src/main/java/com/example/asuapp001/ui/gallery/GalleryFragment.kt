@@ -33,8 +33,8 @@ class GalleryFragment : Fragment() {
     private val database = Firebase.database
     private val myRefStudent: DatabaseReference = database.getReference("LinkURLStudent")
     private val myRefPrepod: DatabaseReference = database.getReference("LinkURLPrepod")
-    private var studentPdfUrl = "https://drive.google.com/file/d/1vyobnZOsCxCNHi0lFjlEFijYl-EI2DoO/view?usp=sharing"
-    private var teacherPdfUrl = "https://disk.yandex.ru/i/..."
+    private var studentPdfUrl = "https://clck.ru/3Jbqfc"
+    private var teacherPdfUrl = "https://clck.ru/3Jbqfc"
     lateinit var Pref : SharedPreferences
 
     override fun onCreateView(
